@@ -221,6 +221,8 @@ nav {
 
   background: var(--accent-text-color);
   box-shadow: 0px 4px 4px var(--shadow-box-color);
+
+  transition: 250ms var(--timing-function);
 }
 
 /* Секция преимущества*/
@@ -516,6 +518,7 @@ nav {
   background-color: var(--main-bg-color);
   transition: background-color 250ms var(--timing-function),
     color 250ms var(--timing-function), box-shadow 250ms var(--timing-function);
+  cursor: pointer;
 }
 
 .categories-nav:not(:last-child) {
@@ -728,13 +731,13 @@ address {
   text-transform: uppercase;
 }
 .mailing {
-  display: block;
+  display: flex;
 }
 
 .mailing input {
-  margin-right: 20px;
+  margin-right: 12px;
   padding: 15px 16px;
-  width: 360px;
+  width: 358px;
   height: 50px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
@@ -742,10 +745,11 @@ address {
 }
 
 .subscribe {
-  display: inline-block;
+  display: flex;
   border-radius: 4px;
   padding: 11px 34px;
-  width: 200px;
+  margin: 0;
+  min-width: 200px;
   height: 50px;
 
   font-weight: 700;
@@ -756,8 +760,25 @@ address {
   letter-spacing: 0.06em;
   color: var(--primary-white-color);
 
-  background: var(--accent-text-color);
-  box-shadow: 0px 4px 4px var(--shadow-box-color);
+  background: #2196f3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.subscribe::after {
+  display: inline-block;
+  content: "";
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  transition: background 250ms var(--timing-function);
+
+  background-image: url("../images/icons/icon-send.svg");
+}
+
+.subscribe:hover,
+.subscribe:focus {
+  background: #188ce8;
 }
 
 /*footer*/
@@ -790,11 +811,11 @@ address {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform 250ms cubic-bezier(0.6, 0.14, 0.21, 1.43);
+  transition: transform 250ms var(--timing-function);
 
-  padding: 40px;
   min-width: 528px;
   min-height: 581px;
+  padding: 40px;
   background-color: var(--primary-white-color);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -823,20 +844,14 @@ address {
   background-color: transparent;
   border: none;
   cursor: pointer;
-}
-.form {
-  position: relative;
-  content: "";
+  transition: 250ms var(--timing-function);
 }
 
-textarea {
-  resize: none;
-  width: 100%;
-  height: 120px;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(33, 33, 33, 0.2);
-  border-radius: 4px;
+/*Form*/
+
+.form {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-field {
@@ -850,7 +865,7 @@ textarea {
 .form-input {
   max-height: 40px;
   margin-bottom: 10px;
-  padding: 15px 15px 15px 42px;
+  padding: 12px 15px 12px 42px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
 }
@@ -864,12 +879,29 @@ textarea {
   letter-spacing: 0.01em;
 }
 
+.modal input:focus,
+.modal textarea:focus {
+  border-color: var(--accent-text-color);
+  outline: none;
+  cursor: pointer;
+}
+.modal input::placeholder {
+  cursor: pointer;
+}
+.modal input:focus::placeholder {
+  cursor: pointer;
+}
+.modal input:focus ~ svg {
+  fill: var(--accent-text-color);
+  cursor: pointer;
+}
+
 .icon {
   position: absolute;
   content: "";
   top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
+  left: 12px;
+  transform: translateY(-30%);
   display: block;
 }
 
@@ -877,13 +909,39 @@ textarea {
   width: 18px;
   height: 18px;
 }
+.form-input:focus + .icon {
+  fill: var(--accent-text-color);
+  transition: 250ms var(--timing-function);
+}
+
+.comment-text {
+  resize: none;
+
+  width: 100%;
+  max-height: 120px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+
+  border-radius: 4px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+}
+
+.comment-text::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+
+  color: rgba(117, 117, 117, 0.5);
+}
 
 .form-check {
-  margin-bottom: 30px;
+  align-self: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.03em;
+
   color: var(--primary-text-color);
 }
 
@@ -892,32 +950,81 @@ textarea {
   text-decoration: underline;
 }
 
-.agreement {
-  font-weight: 400;
+.check-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.check-input {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.check-input + svg {
+  display: inline-block;
+  margin-right: 7px;
+  height: 15px;
+  width: 16px;
+
+  background-color: #ffffff;
+  border: 2px solid #212121;
+  border-radius: 2px;
+
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.check-input:checked + svg {
+  background-color: var(--accent-text-color);
+  background-image: url(../images/icons/symbol-defs.svg#icon-check);
+  background-size: contain;
+  background-origin: border-box;
+  border-color: transparent;
+  border-radius: 2px;
+
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.checkbox {
+  align-self: center;
+  font-weight: normal;
   font-size: 14px;
   line-height: 24px;
+
   letter-spacing: 0.03em;
-  color: var(--primary-text-color);
-}
-.agreement a {
-  text-decoration: underline;
-  color: #2196f3;
 }
 
 .submit {
-  margin: 0 165px;
-  padding: 10px 56px;
-  width: 200px;
+  align-self: center;
+  max-width: 200px;
   height: 50px;
   color: var(--primary-white-color);
   background-color: #2196f3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
+  cursor: pointer;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.87;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  border: none;
+
+  align-self: center;
+  padding-right: 55px;
+  padding-left: 56px;
+
+  transition: background-color 250ms var(--timing-function);
 }
 
 .submit:hover,
 .submit:focus {
   background-color: #188ce8;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
 }
