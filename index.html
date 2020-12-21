@@ -343,7 +343,7 @@
                 <b>Подпишитесь на рассылку</b>
                 <form class="mailing">
                     <label for="email">
-                        <input type="email" name="email" placeholder="E-mail" />
+                        <input type="email" class="footer-input" name="email" id="email" placeholder="E-mail" />
                     </label>
                     <button class="subscribe">Подписаться</button>
                 </form>
@@ -358,7 +358,7 @@
                 <form class="form js-speaker-form">
                     <div class="form-field">
                         <label for="name" class="form-label">Имя</label>
-                        <input type="name" class="form-input" name="name" id="name" placeholder=" " />
+                        <input type="text" class="form-input" name="name" id="name" placeholder=" " />
                         <span class="icon">
                             <svg class="icon-marker">
                                 <use href="./images/icons/symbol-defs.svg#icon-person-black"></use>
@@ -375,8 +375,8 @@
                         </span>
                     </div>
                     <div class="form-field">
-                        <label for="email" class="form-label">Почта</label>
-                        <input type="email" class="form-input" name="email" id="email" placeholder=" "/>
+                        <label for="mail" class="form-label">Почта</label>
+                        <input type="email" class="form-input" name="email" id="mail" placeholder=" " />
                         <span class="icon">
                             <svg class="icon-marker">
                                 <use href="./images/icons/symbol-defs.svg#icon-email-black"></use>
@@ -384,16 +384,18 @@
                         </span>
                     </div>
                     <div class="form-field">
-                        <label for="comment" class="form-label">Комментарий</label>
-                        <textarea class="comment-text" name="comment" rows="10" placeholder="Ведите текст"></textarea>
+                        <label for="comment" class="form-label">Комментарий
+                            <textarea class="comment-text" name="comment" id="comment" rows="10" placeholder="Ведите текст"></textarea>
+                        </label>
                     </div>
                     <div class="form-check">
                         <label for="agreement" class="check-label">
-                            <input  type="checkbox" class="check-input" name="agreement" id="agreement" value="agreement" />
-                            <svg class="check">
+                            <input  type="checkbox" class="check-input visually-hidden" name="agreement" id="agreement" value="agreement" />
+                            <!-- <svg class="check">
                                 <use href="./images/icons/symbol-defs.svg#icon-check"></use>
-                            </svg>
-                            <span class="checkbox">Соглашаюсь с рассылкой и принимаю <a href=""> Условия договора</a></span>
+                            </svg> -->
+                            <span class="check-box"></span>
+                            <span class="check-text">Соглашаюсь с рассылкой и принимаю <a href=""> Условия договора</a></span>
                         </label>
                     </div>
                     <button class="submit" type="submit">Отправить</button>

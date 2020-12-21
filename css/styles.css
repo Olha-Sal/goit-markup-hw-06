@@ -739,9 +739,22 @@ address {
   padding: 15px 16px;
   width: 358px;
   height: 50px;
+
+  background-color: var(--dark-bg-color);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--primary-white-color);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
   border-radius: 4px;
+}
+
+.footer-input::placeholder {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .subscribe {
@@ -936,6 +949,7 @@ address {
 }
 
 .form-check {
+  position: relative;
   align-self: center;
   font-weight: 400;
   font-size: 14px;
@@ -956,7 +970,8 @@ address {
   margin-bottom: 30px;
 }
 
-.check-input {
+.visually-hidden {
+  position: absolute;
   width: 1px;
   height: 1px;
   margin: -1px;
@@ -966,7 +981,43 @@ address {
   overflow: hidden;
 }
 
-.check-input + svg {
+/*Через псевдоелементы*/
+.check-box::after {
+  display: inline-block;
+  vertical-align: middle;
+  content: "";
+  margin-right: 8px;
+  width: 16px;
+  height: 15px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--primery-heading-color);
+}
+
+.check-input:checked + .check-box::after {
+  box-shadow: 0 0 0 2px var(--accent-text-color);
+  background-color: var(--accent-text-color);
+  background-image: url(../images/icons/check2.svg);
+}
+
+/*Через span*/
+
+/* .check-box {
+  margin-right: 8px;
+  width: 16px;
+  height: 15px;
+  border-radius: 1px;
+  box-shadow: 0 0 0 2px var(--primery-heading-color);
+}
+
+.check-input:checked + .check-box {
+  box-shadow: 0 0 0 2px var(--accent-text-color);
+  background-color: var(--accent-text-color);
+  background-image: url(../images/icons/check2.svg);
+} */
+
+/* Через svg*/
+
+/* .check-input + svg {
   display: inline-block;
   margin-right: 7px;
   height: 15px;
@@ -990,8 +1041,9 @@ address {
 
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-.checkbox {
+} */
+
+.check-text {
   align-self: center;
   font-weight: normal;
   font-size: 14px;
